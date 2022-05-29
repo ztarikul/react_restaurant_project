@@ -1,10 +1,18 @@
 import React from "react";
 import Menu from "./Menu";
+import Home from "./Home.";
+import About from "./About";
+import Contact from "./Contact";
+import { Route, Redirect } from "react-router-dom";
 
 const Body = () => {
     return (
         <div>
-            <Menu />
+            <Route path="/" exatc component={Home} />
+            <Route path="/menu" exatc component={Menu} />
+            <Route path="/contact" exatc component={Contact} />
+            <Route path="/about" exatc component={About} />
+            <Redirect from="/" to="/home" />
         </div>
     );
 }

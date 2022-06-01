@@ -8,8 +8,8 @@ const MainComponent = () => {
     return (
         <div>
             <Header />
-            <Footer />
             <Body />
+            <Footer />
 
         </div>
     );

@@ -5,7 +5,7 @@ const MenuItem = (props) => {
 
     return (
         <div>
-            <Card style={{ margin: "10px" }}>
+            <Card style={{ margin: "10px" }} >
                 <CardBody style={{ textAlign: "center" }} >
                     <CardImg
                         width="100%"

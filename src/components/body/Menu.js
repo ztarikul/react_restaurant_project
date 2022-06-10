@@ -5,7 +5,8 @@ import DishDetail from "./DishDetail";
 
 import { CardColumns, Modal, ModalBody, ModalFooter, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { addComment } from "../../redux/actionCreators";
+import { addComment, fetchDishes } from "../../redux/actionCreators";
+import Loading from './Loading';
 
 const mapStatetoProps = state =>{
     return{
@@ -16,7 +17,8 @@ const mapStatetoProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
     return{
-        addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
+        addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+        fetchDishes: () => dispatch(fetchDishes())
     }
 }
 
@@ -28,7 +30,6 @@ class Menu extends Component {
     }
 
     onDishSelect = (dish) => {
-        console.log(dish);
         this.setState({ 
             selectedDish: dish,
             modalOpen: !this.state.modalOpen
@@ -41,17 +42,28 @@ class Menu extends Component {
         })
     }
 
+    componentDidMount(){
+        this.props.fetchDishes();
+    }
+
     render() {
         document.title = "Menu";
-        const menu = this.props.dishes.map(item => {
+        if(this.props.dishes.isLoading){
+            return (
+                <Loading />
+            );
+        }
+        else{
+            
+            const menu = this.props.dishes.dishes.map(item => {
             return (
                 <MenuItem
                     dish={item}
                     key={item.id}
                     DishSelect={() => this.onDishSelect(item)}
                 />
-            );
-        })
+                );
+            })
 
         let dishDetail = null;
         if (this.state.selectedDish != null) {
@@ -75,6 +87,8 @@ class Menu extends Component {
                 </div>
             </div>
         );
+        }
+        
     }
 }
 

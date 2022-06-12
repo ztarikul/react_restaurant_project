@@ -5,19 +5,19 @@ import * as actionTypes from './actionTypes';
 // const initialState = {
 //     dishes: DISHES,
 //     comments: COMMENTS,
-    
+
 // }
 
-const dishReducer = (dishState = { isLoading: false, dishes: [] }, action) =>{
-    switch(action.type){
+const dishReducer = (dishState = { isLoading: false, dishes: [] }, action) => {
+    switch (action.type) {
         case actionTypes.DISHES_LOADING:
-            return{
+            return {
                 ...dishState,
                 isLoading: true,
                 dishes: []
             }
         case actionTypes.LOAD_DISHES:
-            return{
+            return {
                 ...dishState,
                 isLoading: false,
                 dishes: action.payload
@@ -25,11 +25,11 @@ const dishReducer = (dishState = { isLoading: false, dishes: [] }, action) =>{
         default:
             return dishState;
     }
-    
+
 }
 
-const commentReducer = (commentState = COMMENTS, action) =>{
-    switch(action.type){
+const commentReducer = (commentState = COMMENTS, action) => {
+    switch (action.type) {
         case actionTypes.ADD_COMMENT:
             let comment = action.payload;
             comment.id = commentState.length;
@@ -37,8 +37,8 @@ const commentReducer = (commentState = COMMENTS, action) =>{
             return commentState.concat(comment);
         default:
             return commentState;
-    }  
-   
+    }
+
 }
 
 export const Reducer = combineReducers({

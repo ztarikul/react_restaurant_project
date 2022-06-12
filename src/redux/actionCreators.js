@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import DISHES from '../data/dishes';
 
-export const addComment = (dishId, rating, author, comment) => ({ 
+export const addComment = (dishId, rating, author, comment) => ({
     type: actionTypes.ADD_COMMENT,
     payload: {
         dishId: dishId,
@@ -11,7 +11,7 @@ export const addComment = (dishId, rating, author, comment) => ({
     }
 })
 
-export const loadDishes = (dishes) =>({
+export const loadDishes = (dishes) => ({
     type: actionTypes.LOAD_DISHES,
     payload: dishes
 })
